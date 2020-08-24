@@ -30,6 +30,14 @@ function renderEduc(doc){
     newli.appendChild(saxis);
     
     educList.appendChild(newli);
+    saxis.addEventListener('click',(e) =>{
+        let lid = e.target.parentElement.getAttribute('data-id');
+        db.collection("educations").doc(lid).delete().then(function(){
+            alert("Education deleted!");
+        }).catch(function(err){
+            alert("Education not Deleted");
+        })
+    })
 }
 
 db.collection('educations').get().then((snapshot)=>{
